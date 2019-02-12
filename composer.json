@@ -11,19 +11,18 @@
         ]
     },
     "require": {
-        "laravel/framework": "~5.3"
+        "laravel/framework": "~5.7"
     },
     "require-dev": {
-        "mockery/mockery": "0.9.*",
-        "orchestra/testbench": "~3.1",
-        "phpunit/phpunit": "~4.7",
-        "satooshi/php-coveralls": "dev-master@dev",
-        "bugsnag/bugsnag-laravel": "^2.4"
+        "mockery/mockery": "~1.2",
+        "orchestra/testbench": "~3.7",
+        "phpunit/phpunit": "~8.0"
     },
     "suggest": {
         "asm89/stack-cors": "Needed to add CORS headers if add_cors_headers configuration is true",
         "sentry/sentry": "Needed to report exceptions to Sentry.io",
-        "rollbar/rollbar": "Needed to report exceptions to Rollbar.com"
+        "rollbar/rollbar": "Needed to report exceptions to Rollbar.com",
+        "bugsnag/bugsnag-laravel": "Needed to report exceptions to Bugsnag"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
