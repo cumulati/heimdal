@@ -4,7 +4,7 @@ namespace Optimus\Heimdal\Reporters;
 
 use Exception;
 use InvalidArgumentException;
-use Raven_Client;
+use Sentry;
 use Optimus\Heimdal\Reporters\ReporterInterface;
 
 class SentryReporter implements ReporterInterface
@@ -15,8 +15,8 @@ class SentryReporter implements ReporterInterface
     {
         $config = $this->extendConfig($config);
 
-        if (!class_exists(Raven_Client::class)) {
-            throw new InvalidArgumentException("Sentry client is not installed. Use composer require sentry/sentry.");
+        if (!class_exists(Sentry::class)) {
+            throw new InvalidArgumentException("Sentry client is not installed.");
         }
 
         $this->config = $config;
@@ -26,17 +26,14 @@ class SentryReporter implements ReporterInterface
     {
         $options = $this->config['sentry_options'];
 
-        $raven = new Raven_Client(
-            $this->config['dsn'],
-            $options
-        );
-
         $data = null;
         if (isset($options['add_context']) && is_callable($options['add_context'])) {
             $data = $options['add_context']($e);
         }
 
-        return $raven->captureException($e, $data);
+        if (app()->bound('sentry')){
+            app('sentry')->captureException($e, $data);
+        }
     }
 
     public function extendConfig(array $config)
