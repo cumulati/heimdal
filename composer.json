@@ -1,5 +1,5 @@
 {
-    "name": "ventepos/optimus-heimdal",
+    "name": "cumulati/optimus-heimdal",
     "autoload": {
         "psr-4": {
             "Optimus\\Heimdal\\": "src/"
@@ -11,7 +11,7 @@
         ]
     },
     "require": {
-        "laravel/framework": "~5.7"
+        "laravel/framework": "~5.7|~7.0"
     },
     "require-dev": {
         "mockery/mockery": "~1.2",
