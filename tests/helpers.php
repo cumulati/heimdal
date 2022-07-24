@@ -11,7 +11,7 @@ class TestReporter implements ReporterInterface
         $this->config = $config;
     }
 
-    public function report(Exception $e)
+    public function report(Throwable $e)
     {
         return sprintf('%s: %s', $e->getMessage(), $this->config['test']);
     }

@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ExceptionFormatter extends BaseFormatter
 {
-    public function format(JsonResponse $response, Exception $e, array $reporterResponses)
+    public function format(JsonResponse $response, Throwable $e, array $reporterResponses)
     {
         $response->setData(['message' => 'Base']);
     }
@@ -18,15 +18,15 @@ class ExceptionFormatter extends BaseFormatter
 
 class HttpExceptionFormatter extends BaseFormatter
 {
-    public function format(JsonResponse $response, Exception $e, array $reporterResponses)
+    public function format(JsonResponse $response, Throwable $e, array $reporterResponses)
     {
         $response->setData(['message' => 'Http']);
     }
 }
 
-class ExceptionHandlerTest extends TestCase {
-
-    public function setUp()
+class ExceptionHandlerTest extends TestCase
+{
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -38,7 +38,7 @@ class ExceptionHandlerTest extends TestCase {
      */
     private function createHandler()
     {
-        app()->bind(TestReporter::class, function($app){
+        app()->bind(TestReporter::class, function ($app) {
             return function (array $config) {
                 return new TestReporter($config);
             };
@@ -124,7 +124,7 @@ class ExceptionHandlerTest extends TestCase {
 
         $property->setValue($handler, $config);
 
-        $this->setExpectedException(
+        $this->expectException(
             \InvalidArgumentException::class,
             'invalid: stdClass is not a valid reporter class.'
         );
@@ -156,10 +156,10 @@ class ExceptionHandlerTest extends TestCase {
 
         $property->setValue($handler, $config);
 
-        $this->setExpectedException(
+        $this->expectException(
             \InvalidArgumentException::class,
             sprintf(
-                "% is not a valid formatter class.",
+                "ValueError: Unknown format specifier \"%s\"",
                 get_class($formatter)
             )
         );
