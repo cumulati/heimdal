@@ -11,12 +11,12 @@
         ]
     },
     "require": {
-        "laravel/framework": "~9.0"
+        "laravel/framework": "~10.0"
     },
     "require-dev": {
         "mockery/mockery": "~1.4",
-        "orchestra/testbench": "~7.0",
-        "phpunit/phpunit": "~9.0"
+        "orchestra/testbench": "~8.0",
+        "phpunit/phpunit": "~10.0"
     },
     "suggest": {
         "asm89/stack-cors": "Needed to add CORS headers if add_cors_headers configuration is true",
